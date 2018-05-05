@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Compra" representedClassName=".Compra" syncable="YES">
+        <attribute name="cepUGE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codigoItem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codigoUGE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataEncerramento" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="descricaoItem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logradouroUGE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modalidade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantidade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultadoItem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tipoUGE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ufUGE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uge" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unidadeFornecimento" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="valorTotalNegociado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="valorUnitarioNegociado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vencedorOCItem" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Compra" positionX="-63" positionY="-18" width="128" height="315"/>
+    </elements>
+</model>
