@@ -32,7 +32,10 @@
 		B0A4EF51209E069F00AC4C07 /* 2017_03.xml in Resources */ = {isa = PBXBuildFile; fileRef = B0A4EF42209E069F00AC4C07 /* 2017_03.xml */; };
 		B0A4EF52209E069F00AC4C07 /* 2017_02.xml in Resources */ = {isa = PBXBuildFile; fileRef = B0A4EF43209E069F00AC4C07 /* 2017_02.xml */; };
 		B0A4EF54209E06BC00AC4C07 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A4EF53209E06BB00AC4C07 /* XMLParser.swift */; };
-		B0CD5387209E49C500FF5EB0 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B0CD5386209E49C500FF5EB0 /* Inceptionv3.mlmodel */; };
+		B0CD538B209E544900FF5EB0 /* ProductDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0CD538A209E544900FF5EB0 /* ProductDetailView.xib */; };
+		B0CD538D209E545500FF5EB0 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD538C209E545500FF5EB0 /* ProductDetailView.swift */; };
+		B0CD538F209E549500FF5EB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD538E209E549500FF5EB0 /* UIView+Extension.swift */; };
+		B0CD5391209E778700FF5EB0 /* Objetos_850846597.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B0CD5390209E778700FF5EB0 /* Objetos_850846597.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +67,10 @@
 		B0A4EF42209E069F00AC4C07 /* 2017_03.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 2017_03.xml; sourceTree = "<group>"; };
 		B0A4EF43209E069F00AC4C07 /* 2017_02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 2017_02.xml; sourceTree = "<group>"; };
 		B0A4EF53209E06BB00AC4C07 /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
-		B0CD5386209E49C500FF5EB0 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		B0CD538A209E544900FF5EB0 /* ProductDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailView.xib; sourceTree = "<group>"; };
+		B0CD538C209E545500FF5EB0 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		B0CD538E209E549500FF5EB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		B0CD5390209E778700FF5EB0 /* Objetos_850846597.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Objetos_850846597.mlmodel; sourceTree = "<group>"; };
 		BD3C0C8E84CCB6F5BF2EEF46 /* Pods-ComprasPublicas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComprasPublicas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComprasPublicas/Pods-ComprasPublicas.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +115,7 @@
 		B01E2A7F209E02B700A34AF6 /* ComprasPublicas */ = {
 			isa = PBXGroup;
 			children = (
-				B0CD5386209E49C500FF5EB0 /* Inceptionv3.mlmodel */,
+				B0CD5390209E778700FF5EB0 /* Objetos_850846597.mlmodel */,
 				B0A4EF34209E069F00AC4C07 /* XML */,
 				B01E2A80209E02B700A34AF6 /* AppDelegate.swift */,
 				B01E2A82209E02B700A34AF6 /* ViewController.swift */,
@@ -121,6 +127,9 @@
 				B0A4EF53209E06BB00AC4C07 /* XMLParser.swift */,
 				B0A1C9EC209E17A4005F88E9 /* compras_publicas.xcdatamodeld */,
 				B0A1C9EF209E1B1B005F88E9 /* Date+Extension.swift */,
+				B0CD538A209E544900FF5EB0 /* ProductDetailView.xib */,
+				B0CD538C209E545500FF5EB0 /* ProductDetailView.swift */,
+				B0CD538E209E549500FF5EB0 /* UIView+Extension.swift */,
 			);
 			path = ComprasPublicas;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 				B0A4EF52209E069F00AC4C07 /* 2017_02.xml in Resources */,
 				B0A4EF4D209E069F00AC4C07 /* 2017_05.xml in Resources */,
 				B0A4EF45209E069F00AC4C07 /* 2017_08.xml in Resources */,
+				B0CD538B209E544900FF5EB0 /* ProductDetailView.xib in Resources */,
 				B0A4EF4F209E069F00AC4C07 /* 2017_10.xml in Resources */,
 				B0A4EF47209E069F00AC4C07 /* 2018_02.xml in Resources */,
 				B0A4EF49209E069F00AC4C07 /* 2017_06.xml in Resources */,
@@ -291,11 +301,13 @@
 			files = (
 				B0A1C9F0209E1B1B005F88E9 /* Date+Extension.swift in Sources */,
 				B01E2A83209E02B700A34AF6 /* ViewController.swift in Sources */,
+				B0CD5391209E778700FF5EB0 /* Objetos_850846597.mlmodel in Sources */,
 				B0A1C9EE209E17A4005F88E9 /* compras_publicas.xcdatamodeld in Sources */,
 				B0A1C9EB209E0D46005F88E9 /* Compra.swift in Sources */,
 				B01E2A81209E02B700A34AF6 /* AppDelegate.swift in Sources */,
 				B0A4EF54209E06BC00AC4C07 /* XMLParser.swift in Sources */,
-				B0CD5387209E49C500FF5EB0 /* Inceptionv3.mlmodel in Sources */,
+				B0CD538F209E549500FF5EB0 /* UIView+Extension.swift in Sources */,
+				B0CD538D209E545500FF5EB0 /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
