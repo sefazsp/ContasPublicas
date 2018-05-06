@@ -34,7 +34,8 @@ class ViewController: UIViewController {
     var i = 0
     var eName: String?
     var compra: Compra?
-    var compras = [Compra]()
+    var compras: [Compra]?
+    var filteredCompras = [Compra]()
     
     var cameraLayer: CALayer!
     let captureSession = AVCaptureSession()
@@ -42,40 +43,58 @@ class ViewController: UIViewController {
     private let cdm = CoreDataManager.sharedInstance
     
     let productDetailView = ProductDetailView.fromNib(named: "ProductDetailView") as! ProductDetailView
-    private var animationProgress: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getProducts()
         cameraSetup()
         //getXmlFiles(path: 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func getProducts(id: String) {
+    func getProducts() {
         var context: NSManagedObjectContext?
         if cdm.mainContext.hasChanges {
             context = cdm.backgroundContext
         } else {
             context = cdm.mainContext
         }
-        compras = (context?.managerFor(Compra.self).array.filter({ $0.codigoItem == id }))!
-        getAverageCost()
+        compras = (context?.managerFor(Compra.self).array)!
     }
     
-    func getAverageCost() {
-        var totalValue = 0.0
-        var i = 0
-        for item in compras {
-            i += 1
-            totalValue += Double(item.valorUnitarioNegociado)!
+    func getAverageCost(codigoItem: String) {
+        if let filter = compras {
+            filteredCompras = filter.filter({ $0.codigoItem == codigoItem })
         }
-        let averageCost = totalValue/Double(i)
+        var totalValue: Float = 0.0
+        var i = 0
+        for item in filteredCompras {
+            if let valorUnitario = item.valorUnitarioNegociado {
+                if let value = Float(valorUnitario) {
+                    if value != 0 {
+                        i += 1
+                        totalValue += value
+                    }
+                }
+            }
+        }
+        let averageCost = totalValue/Float(i)
         print(averageCost)
-        showView(averageCost: "\(averageCost)", totalItems: "\(i)")
+        showView(averageCost: averageCost.floatToCurrency()!, totalItems: "\(i)")
     }
     
     func cameraSetup() {
@@ -119,10 +138,10 @@ class ViewController: UIViewController {
         }
         
         let highestConfidenceResult = results.first!
-        if highestConfidenceResult.confidence > 0.7 {
+        if highestConfidenceResult.confidence > 0.9 {
             let identifier = highestConfidenceResult.identifier.contains(", ") ? String(describing: highestConfidenceResult.identifier.split(separator: ",").first!) : highestConfidenceResult.identifier
             captureSession.stopRunning()
-            getProducts(id: identifier)
+            getAverageCost(codigoItem: identifier)
 
             print(identifier)
         } else {
@@ -131,12 +150,13 @@ class ViewController: UIViewController {
     }
     
     func showView(averageCost: String, totalItems: String) {
+        currentState = .open
         productDetailView.addGestureRecognizer(tapRecognizer)
-        productDetailView.addGestureRecognizer(panRecognizer)
 
-        productDetailView.itemTitleLabel.text = compras.first?.descricaoItem
+        productDetailView.itemTitleLabel.text = filteredCompras.first?.descricaoItem
         productDetailView.averageCostLabel.text = averageCost
         productDetailView.totalLabel.text = totalItems
+        productDetailView.historicButton.addTarget(self, action: #selector(viewHistoricTouchUpInside), for: .touchUpInside)
         
         productDetailView.frame = CGRect(x: 0, y: 1000, width: view.frame.width, height: 314)
         view.addSubview(productDetailView)
@@ -145,6 +165,12 @@ class ViewController: UIViewController {
             self.productDetailView.frame = CGRect(x: 0, y: self.view.frame.height - 314, width: self.view.frame.width, height: 314)
         }) { (completed) in
         }
+    }
+    
+    @objc func viewHistoricTouchUpInside() {
+        let listaCompraViewController = storyboard?.instantiateViewController(withIdentifier: "ListaCompraViewController") as? ListaCompraViewController
+        listaCompraViewController?.compras = filteredCompras
+        navigationController?.pushViewController(listaCompraViewController!, animated: true)
     }
     
     func getXmlFiles(path: Int) {
@@ -291,16 +317,6 @@ class ViewController: UIViewController {
     
     
     // MARK: - Animation
-
-    /// All of the currently running animators.
-    private var runningAnimators = [UIViewPropertyAnimator]()
-    
-    
-    private lazy var panRecognizer: InstantPanGestureRecognizer = {
-        let recognizer = InstantPanGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(productDetailViewPanned(recognizer:)))
-        return recognizer
-    }()
     
     private var currentState: State = .closed
     
@@ -312,7 +328,6 @@ class ViewController: UIViewController {
     
     @objc private func productDetailViewTapped(recognizer: UITapGestureRecognizer) {
         let state = currentState.opposite
-        let transitionAnimator = UIViewPropertyAnimator(duration: 1, dampingRatio: 1, animations: {
             switch state {
             case .open:
                 self.productDetailView.frame = CGRect(x: 0, y: self.view.frame.height - 314, width: self.view.frame.width, height: 314)
@@ -321,126 +336,9 @@ class ViewController: UIViewController {
                 self.captureSession.startRunning()
             }
             self.view.layoutIfNeeded()
-        })
-        transitionAnimator.addCompletion { position in
-            switch position {
-            case .start:
-                self.currentState = state.opposite
-            case .end:
-                self.currentState = state
-            case .current:
-                ()
-            }
-            switch self.currentState {
-            case .open:
-                self.productDetailView.frame = CGRect(x: 0, y: self.view.frame.height - 314, width: self.view.frame.width, height: 314)
-            case .closed:
-                self.productDetailView.frame = CGRect(x: 0, y: 1000, width: self.view.frame.width, height: 0)
-                self.captureSession.startRunning()
-            }
-        }
-        transitionAnimator.startAnimation()
-    }
-    
-    /// Animates the transition, if the animation is not already running.
-    private func animateTransitionIfNeeded(to state: State, duration: TimeInterval) {
-        
-        // ensure that the animators array is empty (which implies new animations need to be created)
-        guard runningAnimators.isEmpty else { return }
-        
-        // an animator for the transition
-        let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1, animations: {
-            switch state {
-            case .open:
-                self.productDetailView.frame = CGRect(x: 0, y: self.view.frame.height - 314, width: self.view.frame.width, height: 314)
-            case .closed:
-                self.productDetailView.frame = CGRect(x: 0, y: 1000, width: self.view.frame.width, height: 0)
-                self.captureSession.startRunning()
-            }
-            self.view.layoutIfNeeded()
-        })
-        
-        // the transition completion block
-        transitionAnimator.addCompletion { position in
-            
-            // update the state
-            switch position {
-            case .start:
-                self.currentState = state.opposite
-            case .end:
-                self.currentState = state
-            case .current:
-                ()
-            }
-            
-            // manually reset the constraint positions
-            switch self.currentState {
-            case .open:
-                self.productDetailView.frame = CGRect(x: 0, y: self.view.frame.height - 314, width: self.view.frame.width, height: 314)
-            case .closed:
-                self.productDetailView.frame = CGRect(x: 0, y: 1000, width: self.view.frame.width, height: 0)
-                self.captureSession.startRunning()
-            }
-            
-            // remove all running animators
-            self.runningAnimators.removeAll()
-        }
-        
-        // start all animators
-        transitionAnimator.startAnimation()
-        
-        // keep track of all running animators
-        runningAnimators.append(transitionAnimator)
-        
-    }
-    
-    @objc private func productDetailViewPanned(recognizer: UIPanGestureRecognizer) {
-        let transitionAnimator = UIViewPropertyAnimator(duration: 1, dampingRatio: 1, animations: nil)
-        switch recognizer.state {
-        case .began:
-            animationProgress = transitionAnimator.fractionComplete
-            animateTransitionIfNeeded(to: currentState.opposite, duration: 1.5)
-            transitionAnimator.pauseAnimation()
-        case .changed:
-            let translation = recognizer.translation(in: productDetailView)
-            var fraction = -translation.y / 314
-            if currentState == .open { fraction *= -1 }
-            if transitionAnimator.isReversed { fraction *= -1 }
-            transitionAnimator.fractionComplete = fraction + animationProgress
-        case .ended:
-            let yVelocity = recognizer.velocity(in: productDetailView).y
-            let shouldClose = yVelocity > 0
-            if yVelocity == 0 {
-                transitionAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-                break
-            }
-            switch currentState {
-            case .open:
-                if !shouldClose && !transitionAnimator.isReversed { transitionAnimator.isReversed = !transitionAnimator.isReversed }
-                if shouldClose && transitionAnimator.isReversed { transitionAnimator.isReversed = !transitionAnimator.isReversed }
-            case .closed:
-                if shouldClose && !transitionAnimator.isReversed { transitionAnimator.isReversed = !transitionAnimator.isReversed }
-                if !shouldClose && transitionAnimator.isReversed { transitionAnimator.isReversed = !transitionAnimator.isReversed }
-            }
-            transitionAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-        default:
-            ()
-        }
     }
     
 }
-
-// MARK: - InstantPanGestureRecognizer
-/// A pan gesture that enters into the `began` state on touch down instead of waiting for a touches moved event.
-class InstantPanGestureRecognizer: UIPanGestureRecognizer {
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        if (self.state == UIGestureRecognizerState.began) { return }
-        super.touchesBegan(touches, with: event)
-        self.state = UIGestureRecognizerState.began
-    }
-}
-
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {

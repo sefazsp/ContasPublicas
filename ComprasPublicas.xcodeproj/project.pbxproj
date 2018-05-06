@@ -36,6 +36,10 @@
 		B0CD538D209E545500FF5EB0 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD538C209E545500FF5EB0 /* ProductDetailView.swift */; };
 		B0CD538F209E549500FF5EB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD538E209E549500FF5EB0 /* UIView+Extension.swift */; };
 		B0CD5391209E778700FF5EB0 /* Objetos_850846597.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B0CD5390209E778700FF5EB0 /* Objetos_850846597.mlmodel */; };
+		B0CD5395209EB24800FF5EB0 /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD5394209EB24800FF5EB0 /* Float+Extension.swift */; };
+		B0CD5398209F325900FF5EB0 /* CompraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD5396209F325900FF5EB0 /* CompraCell.swift */; };
+		B0CD5399209F325900FF5EB0 /* CompraCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0CD5397209F325900FF5EB0 /* CompraCell.xib */; };
+		B0CD539B209F366000FF5EB0 /* ListaCompraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD539A209F366000FF5EB0 /* ListaCompraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +75,10 @@
 		B0CD538C209E545500FF5EB0 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		B0CD538E209E549500FF5EB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B0CD5390209E778700FF5EB0 /* Objetos_850846597.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Objetos_850846597.mlmodel; sourceTree = "<group>"; };
+		B0CD5394209EB24800FF5EB0 /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
+		B0CD5396209F325900FF5EB0 /* CompraCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompraCell.swift; sourceTree = "<group>"; };
+		B0CD5397209F325900FF5EB0 /* CompraCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompraCell.xib; sourceTree = "<group>"; };
+		B0CD539A209F366000FF5EB0 /* ListaCompraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaCompraViewController.swift; sourceTree = "<group>"; };
 		BD3C0C8E84CCB6F5BF2EEF46 /* Pods-ComprasPublicas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComprasPublicas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComprasPublicas/Pods-ComprasPublicas.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +138,10 @@
 				B0CD538A209E544900FF5EB0 /* ProductDetailView.xib */,
 				B0CD538C209E545500FF5EB0 /* ProductDetailView.swift */,
 				B0CD538E209E549500FF5EB0 /* UIView+Extension.swift */,
+				B0CD5394209EB24800FF5EB0 /* Float+Extension.swift */,
+				B0CD5396209F325900FF5EB0 /* CompraCell.swift */,
+				B0CD5397209F325900FF5EB0 /* CompraCell.xib */,
+				B0CD539A209F366000FF5EB0 /* ListaCompraViewController.swift */,
 			);
 			path = ComprasPublicas;
 			sourceTree = "<group>";
@@ -234,6 +246,7 @@
 				B01E2A88209E02B900A34AF6 /* Assets.xcassets in Resources */,
 				B0A4EF46209E069F00AC4C07 /* 2018_01.xml in Resources */,
 				B0A4EF4B209E069F00AC4C07 /* 2017_07.xml in Resources */,
+				B0CD5399209F325900FF5EB0 /* CompraCell.xib in Resources */,
 				B0A4EF52209E069F00AC4C07 /* 2017_02.xml in Resources */,
 				B0A4EF4D209E069F00AC4C07 /* 2017_05.xml in Resources */,
 				B0A4EF45209E069F00AC4C07 /* 2017_08.xml in Resources */,
@@ -260,14 +273,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CoreDataManager/CoreDataManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
+				"${BUILT_PRODUCTS_DIR}/Transition/Transition.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreDataManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Transition.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -299,14 +312,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0CD5398209F325900FF5EB0 /* CompraCell.swift in Sources */,
 				B0A1C9F0209E1B1B005F88E9 /* Date+Extension.swift in Sources */,
 				B01E2A83209E02B700A34AF6 /* ViewController.swift in Sources */,
 				B0CD5391209E778700FF5EB0 /* Objetos_850846597.mlmodel in Sources */,
+				B0CD539B209F366000FF5EB0 /* ListaCompraViewController.swift in Sources */,
 				B0A1C9EE209E17A4005F88E9 /* compras_publicas.xcdatamodeld in Sources */,
 				B0A1C9EB209E0D46005F88E9 /* Compra.swift in Sources */,
 				B01E2A81209E02B700A34AF6 /* AppDelegate.swift in Sources */,
 				B0A4EF54209E06BC00AC4C07 /* XMLParser.swift in Sources */,
 				B0CD538F209E549500FF5EB0 /* UIView+Extension.swift in Sources */,
+				B0CD5395209EB24800FF5EB0 /* Float+Extension.swift in Sources */,
 				B0CD538D209E545500FF5EB0 /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,12 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="366" height="314"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Título do produto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ue7-0G-PYV">
-                    <rect key="frame" x="24" y="20" width="318" height="26"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Título do produto" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="ue7-0G-PYV">
+                    <rect key="frame" x="24" y="9" width="318" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="26" id="VgG-DX-ADX"/>
+                        <constraint firstAttribute="height" constant="50" id="VgG-DX-ADX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="22"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -104,15 +104,15 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.90300069591622567" green="0.90253269986102724" blue="0.96621397878917947" alpha="0.51971853595890416" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.96470588235294119" alpha="0.51971853595890416" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="ue7-0G-PYV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="0k9-76-a5g"/>
+                <constraint firstItem="ue7-0G-PYV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="9" id="0k9-76-a5g"/>
                 <constraint firstItem="J2x-NX-W18" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="OCv-np-IdM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="J2x-NX-W18" secondAttribute="trailing" constant="24" id="XED-c6-NMk"/>
                 <constraint firstItem="y2e-qJ-Q4Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="54" id="XXw-Dx-Z1E"/>
                 <constraint firstItem="ue7-0G-PYV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Zu5-6I-XkY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="y2e-qJ-Q4Y" secondAttribute="trailing" constant="54" id="hsb-ay-E4u"/>
-                <constraint firstItem="J2x-NX-W18" firstAttribute="top" secondItem="ue7-0G-PYV" secondAttribute="bottom" constant="21" id="kTR-3Q-VWD"/>
+                <constraint firstItem="J2x-NX-W18" firstAttribute="top" secondItem="ue7-0G-PYV" secondAttribute="bottom" constant="8" id="kTR-3Q-VWD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="y2e-qJ-Q4Y" secondAttribute="bottom" constant="18" id="p0S-wP-jby"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ue7-0G-PYV" secondAttribute="trailing" constant="24" id="rDv-sh-tPz"/>
                 <constraint firstItem="y2e-qJ-Q4Y" firstAttribute="top" secondItem="J2x-NX-W18" secondAttribute="bottom" constant="82.5" id="uLp-pj-UdG"/>
